@@ -1,107 +1,79 @@
-/*==================================
-============ ft:: STACK ============
-====================================
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khirsig <khirsig@student.42heilbronn.de    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 08:43:51 by khirsig           #+#    #+#             */
+/*   Updated: 2022/08/18 12:37:20 by khirsig          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-=> MEMBER TYPES
-	container_type
-	value_type
-	size_type
-	reference
-	const_reference
-=> MEMBER FUNCTIONS
-	(constructor)
-	(deconstructor)
-	operator=
-	-> ELEMENT ACCESS
-		top
-	-> CAPACITY
-		empty
-		size
-	-> MODIFIERS
-		push
-		pop
-=> NON MEMBER FUNCTIONS
-	operator==
-	operator!=
-	operator<
-	operator<=
-	operator>
-	operator>=
-*/
+#ifndef STACK_HPP_
+#define STACK_HPP_
 
-#ifndef FT_STACK_HPP
-#define FT_STACK_HPP
+#include "vector.hpp"
 
-// #include <stack>
-#include "iterator.hpp"
-#include "vector"
+namespace ft {
+template <class T, class Container = ft::vector<T> >
+class stack {
+   public:
+    typedef Container                           container_type;
+    typedef typename Container::value_type      value_type;
+    typedef typename Container::size_type       size_type;
+    typedef typename Container::reference       reference;
+    typedef typename Container::const_reference const_reference;
 
-namespace ft{
+    explicit stack(const container_type &ctnr = container_type()) { _c = ctnr; }
 
-	template <class T, class Container = std::vector<T> >										//stack line 20
-	class stack{																		//stack line 21
-	public:
-			typedef Container                                container_type;			//stack line 23
-    		typedef typename container_type::value_type      value_type;				//stack line 24
-    		typedef typename container_type::reference       reference;					//stack line 25
-    		typedef typename container_type::const_reference const_reference;			//stack line 26
-    		typedef typename container_type::size_type       size_type;					//stack line 27
+    bool empty() const { return (_c.empty()); }
 
-	protected:
-    		container_type c;
-	
-	public:
-			// stack() {}																	//stack line 34
-			virtual ~stack() {}															//stack line 35
-			explicit stack(const Container& cont = Container()) : c(cont) {}			//stack line 155
-			stack(const stack& q) : c(q.c) {}											//stack line 133
-			stack& operator=(const stack& q) {c = q.c; return *this;}					//stack line 136
+    size_type size() const { return (_c.size()); }
 
+    value_type &top() { return (_c.back()); }
 
-			bool empty() const {return c.empty();}										//stack line 191
-			size_type size() const {return c.size();}									//stack line 193
-			reference top() {return c.back();}											//stack line 195
-			const_reference top() const {return c.back();}								//stack line 197
-			void push(const value_type v) {c.push_back(v);}								//stack line 200
-			void pop() {c.pop_back();}													//stack line 217
+    const value_type &top() const { return (_c.back()); }
 
-			template <class T1, class C1>												//stack line 227
-			friend bool operator==(const stack<T1, C1>& x, const stack<T1, C1>& y);		//stack line 223
+    void push(const value_type &val) { _c.push_back(val); }
 
-			template <class T1, class C1>												//stack line 232
-			friend bool operator< (const stack<T1, C1>& x, const stack<T1, C1>& y);		//stack line 235
-	};
+    void pop() { _c.pop_back(); }
 
-	template <class Tp, class Container>												//stack line 254
-	bool operator==(const stack<Tp, Container>& x, const stack<Tp, Container>& y){		//stack line 257
-	    return x.c == y.c;																//stack line 259
-	}
+    template <class U, class Cntr>
+    friend bool operator==(const stack<U, Cntr> &lhs, const stack<U, Cntr> &rhs);
+    template <class U, class Cntr>
+    friend bool operator<(const stack<U, Cntr> &lhs, const stack<U, Cntr> &rhs);
 
-	template <class Tp, class Container>												//stack line 262
-	bool operator< (const stack<Tp, Container>& x, const stack<Tp, Container>& y){		//stack line 265
-	    return x.c < y.c;																//stack line 267
-	}
+   private:
+    container_type _c;
+};
 
-	template <class Tp, class Container>												//stack line 270
-	bool operator!=(const stack<Tp, Container>& x, const stack<Tp, Container>& y){		//stack line 273
-	    return !(x == y);																//stack line 275
-	}
-
-	template <class Tp, class Container>												//stack line 278
-	bool operator> (const stack<Tp, Container>& x, const stack<Tp, Container>& y){		//stack line 281
-	    return x > y;																	//stack line 283
-	}
-
-	template <class Tp, class Container>												//stack line 287
-	bool operator>=(const stack<Tp, Container>& x, const stack<Tp, Container>& y){		//stack line 289
-	    return !(x < y);																//stack line 291
-	}
-
-	template <class Tp, class Container>												//stack line 294
-	bool operator<=(const stack<Tp, Container>& x, const stack<Tp, Container>& y){		//stack line 297
-	    return !(x > y);																//stack line 299
-	}
-
+template <class U, class Cntr>
+bool operator==(const ft::stack<U, Cntr> &lhs, const ft::stack<U, Cntr> &rhs) {
+    return lhs._c == rhs._c;
 }
+
+template <class U, class Cntr>
+bool operator!=(const ft::stack<U, Cntr> &lhs, const ft::stack<U, Cntr> &rhs) {
+    return !(lhs == rhs);
+}
+
+template <class U, class Cntr>
+bool operator<(const ft::stack<U, Cntr> &lhs, const ft::stack<U, Cntr> &rhs) {
+    return lhs._c < rhs._c;
+}
+template <class U, class Cntr>
+bool operator<=(const ft::stack<U, Cntr> &lhs, const ft::stack<U, Cntr> &rhs) {
+    return !(lhs > rhs);
+}
+template <class U, class Cntr>
+bool operator>(const ft::stack<U, Cntr> &lhs, const ft::stack<U, Cntr> &rhs) {
+    return rhs < lhs;
+}
+template <class U, class Cntr>
+bool operator>=(const ft::stack<U, Cntr> &lhs, const ft::stack<U, Cntr> &rhs) {
+    return !(lhs < rhs);
+}
+}  // namespace ft
 
 #endif
