@@ -1,14 +1,60 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vector.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 08:22:39 by khirsig           #+#    #+#             */
-/*   Updated: 2022/08/19 22:18:43 by nlenoch          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*=================================
+=========== ft:: VECTOR ===========
+===================================
+
+=> MEMBER TYPES
+	value_type
+	allocator_type
+	size_type
+	difference_type
+	reference
+	const_reference
+	pointer
+	const_pointer
+	iterator
+	const_iterator
+	reverse_iterator
+	const_reverse_iterator
+=> MEMBER FUNCTIONS
+	(constructor)
+	(deconstructor)
+	operator=
+	assign
+	get_allocator
+	-> ELEMENT ACCESS
+		at
+		operator[]
+		front
+		back
+		data
+	-> ITERATORS
+		begin
+		end
+		rbegin
+		rend
+	-> CAPACITY
+		empty
+		size
+		max_size
+		reverse
+		capacity
+	-> MODIFIERS
+		clear
+		insert
+		erase
+		push_back
+		pop_back
+		resize
+		swap
+=> NON MEMBER FUNCTIONS
+	operator==
+	operator!=
+	operator<
+	operator<=
+	operator>
+	operator>=
+
+*/
 
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
@@ -18,13 +64,12 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
-// #include <utility>
 
-#include "iterators/random_access_iterator.hpp"
-#include "new/iterator.hpp"
-#include "new/utility.hpp"
-#include "new/type_traits.hpp"
-#include "new/algorithm.hpp"
+#include "utils/random_access_iterator.hpp"
+#include "utils/iterator.hpp"
+#include "utils/utility.hpp"
+#include "utils/type_traits.hpp"
+#include "utils/algorithm.hpp"
 
 
 namespace ft {

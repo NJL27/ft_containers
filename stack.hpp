@@ -1,14 +1,33 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   stack.hpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: khirsig <khirsig@student.42heilbronn.de    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 08:43:51 by khirsig           #+#    #+#             */
-/*   Updated: 2022/08/18 12:37:20 by khirsig          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*==================================
+============ ft:: STACK ============
+====================================
+
+=> MEMBER TYPES
+	container_type
+	value_type
+	size_type
+	reference
+	const_reference
+=> MEMBER FUNCTIONS
+	(constructor)
+	(deconstructor)
+	operator=
+	-> ELEMENT ACCESS
+		top
+	-> CAPACITY
+		empty
+		size
+	-> MODIFIERS
+		push
+		pop
+=> NON MEMBER FUNCTIONS
+	operator==
+	operator!=
+	operator<
+	operator<=
+	operator>
+	operator>=
+*/
 
 #ifndef STACK_HPP_
 #define STACK_HPP_
